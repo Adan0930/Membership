@@ -1,0 +1,21 @@
+.index{
+    width: 100%;
+    height: 100vh;
+    background: #360033;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0b8793, #360033);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.bg-image{
+    width: 70%;
+    height: 500px;
+    /* background:url('/img/login-cupo.jpg'); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* opacity: .50; */
+}
+.int-login{
+    height: 80vh;
+    
+}
