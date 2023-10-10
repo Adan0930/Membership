@@ -2,15 +2,17 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import{create} from 'express-handlebars';
-import routes from './routes/index.js';
 import session from 'express-session';
 import {pool} from './database.js';
 import morgan from 'morgan';
 import passport from 'passport';
 import { Strategy as GoogleStrategy} from "passport-google-oauth20";
-import google from './controllers/google.js'
+        
 import expressMySQLSession from "express-mysql-session";
 import flash from "connect-flash";
+
+import routes from './routes/index.js';
+import './lib/passport.js'
 
 
 //Initializations
@@ -42,15 +44,20 @@ app.use(
         secret: "adsaherr",
         resave: false,
         saveUninitialized: false,
-        store: new MySQLStore({},pool)
+        store: new MySQLStore({},pool),
+       
   
     })
 );
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
+//Global Variables
+app.use((req,res,next)=>{
+    
+    app.locals.user = req.user;
+    next();
+});
 // Routes
 app.use(routes);
 
@@ -59,6 +66,7 @@ app.use(routes);
 app.use(express.static(path.join(__dirname, "public")))
 
 app.listen(3000);
+
 console.log('Estamos iniziando el servidor');
 
 
